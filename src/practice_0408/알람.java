@@ -24,6 +24,17 @@ public class 알람 {
             resM = m + 15;
         }
 
-        System.out.printf("%s : %s -> %s : %s", h,m,resH,resM);
+        System.out.printf("%s : %s -> %s : %s\n", h,m,resH,resM);
+
+        // 강사님 코드
+        int minute = h*60 + m;
+        minute -= 45;
+        if(minute <0) {
+            minute += (24*60);
+        }
+        m = minute%60;
+        h = minute/60;
+
+        System.out.printf("%s : %s", h,m);
     }
 }

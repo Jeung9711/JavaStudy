@@ -23,5 +23,28 @@ public class 삼각형출력 {
             }
             System.out.println();
         }
+
+        // 강사님 코드
+        int count =5;
+        int center =count/2+1;
+        int left =center-1;
+        int right =center +1;
+        for(int row=1; row<=count; row++) {
+            for(int col=1; col<=count; col++) {
+                if(left < col && right>col) {
+                    System.out.print("*");
+                } else {
+                    System.out.print(" ");
+                }
+            }
+            if(row<center){
+                left--;
+                right++;
+            } else {
+                left++;
+                right--;
+            }
+            System.out.println();
+        }
     }
 }
