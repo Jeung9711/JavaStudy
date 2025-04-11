@@ -4,16 +4,18 @@ import java.util.Random;
 
 public class Monster {
     private int hp;
-    Random random = new Random();
+    private Random random;
 
     public Monster() {}
+    public Monster(Random random) {
+        this.random = random;
+    }
+
     public int getHp() {
         return hp;
     }
     public void setHp(int hp){
-        if(hp>=0) {
-            this.hp = hp;
-        }
+        this.hp = Math.max(0, hp);
     }
 
     public void attack(Player p) {
@@ -28,7 +30,7 @@ public class Monster {
     
     public void takeDamage(String type, int damage) {
         this.hp -= damage;
-        System.out.printf("몬스터가 플레이어의 %s 공격에 %s만큼의 공격을 입었다!\n몬스터 남은 체력: %s",
+        System.out.printf("몬스터가 플레이어의 %s 공격에 %s만큼의 공격을 입었다!\n몬스터 남은 체력: %s\n",
                 type, damage, this.hp);
     }
 }

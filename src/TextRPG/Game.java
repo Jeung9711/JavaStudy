@@ -1,10 +1,12 @@
 package TextRPG;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
-    Player p = new Player();
-    Monster m = new Monster();
+    Random random = new Random();
+    Player p = new Player(random);
+    Monster m = new Monster(random);
     boolean result = true;
     Scanner sc = new Scanner(System.in);
 

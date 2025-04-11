@@ -1,10 +1,17 @@
 package TextRPG;
 
+import java.util.Random;
+
 public class Player {
     // 플레이어 기본 정보 설정
     private int hp;
+    private Random random;
+    Game g = new Game();
+    Monster m =new Monster();
 
-    public Player() {
+    public Player() {}
+    public Player( Random random) {
+        this.random = random;
     }
 
    // hp를 private 취급하여 getter, setter사용
@@ -12,20 +19,19 @@ public class Player {
         return hp;
    }
    public void setHp(int hp) {
-        if(hp>=0)
-            this.hp = hp;
+        // 음수일 경우 0 반환
+        this.hp = Math.max(0, hp);
    }
 
     public void attack(Monster m, String type) {
-        String attacktype = type;
         int power = 0;
 
         switch (type) {
             case "베기":
-                power = (int) (Math.random() + 5 + 1);
+                power = (int) (Math.random() + 5) + 1;
                 break;
             case "찌르기":
-                power = (int) (Math.random() * 3 + 1);
+                power = (int) (Math.random() * 3) + 1;
                 break;
             default:
                 System.out.println("알 수 없는 공격입니다. 공격이 무효처리 됩니다.");
