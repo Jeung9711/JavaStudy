@@ -8,11 +8,12 @@ public class Player {
     private int hp;
     private int dependence;
     private boolean isDepende = false;
-    private boolean isRun = false;
+    private static final int RUN_PROBABILITY = 8;
 
     private Random random;
     private Scanner sc;
     Monster m =new Monster();
+    Display dp = new Display();
 
     public Player() {}
     public Player(Random random, Scanner sc) {
@@ -25,14 +26,11 @@ public class Player {
    public int getHp() {
         return hp;
    }
-   public void setIsRun(boolean isRun) {
-        this.isRun = isRun;
-   }
 
    public void chooseAction(String action) {
         switch (action) {
             case "공격":
-                System.out.println("공격을 선택하세요. 베기/찌르기");
+                dp.print("공격을 선택하세요. 베기/찌르기");
                 String type = sc.next();
                 attack(m,type);
                 break;
@@ -59,7 +57,7 @@ public class Player {
                 power = (int) (Math.random() * 3) + 1;
                 break;
             default:
-                System.out.println("알 수 없는 공격입니다. 공격이 무효처리 됩니다.");
+                dp.print("알 수 없는 공격입니다. 공격이 무효처리 됩니다.");
                 break;
         }
         m.takeDamage(type, power);
@@ -75,16 +73,16 @@ public class Player {
                 damage = 0;
             }
         }
-        this.hp -= damage;
-        System.out.printf("플레이어가 몬스터의 공격에 %s만큼의 데미지를 입었다!\n플레이어의 남은 체력: %s\n",
-                damage, hp);
+        hp -= damage;
+        dp.printDamage(damage);
+        dp.printPlayerStatus(hp);
     }
 
     // 방어
     public void defend() {
-        this.isDepende = true;
-        this.dependence = Math.min(3,(int) (hp/10));
-        System.out.printf("방어력이 %s 증가했습니다.\n", dependence);
+        isDepende = true;
+        dependence = Math.min(3,(int) (hp/10));
+        dp.printDefend(dependence);
     }
 
     // 힐
@@ -94,13 +92,8 @@ public class Player {
 
     // 도망 확률 계산
     public boolean isRun() {
-        int tryRun = random.nextInt(11);
-        if(tryRun > 8) {
-            isRun = true;
-        } else {
-            isRun = false;
-        }
-        return isRun;
+        int tryRun = random.nextInt(10);
+        return tryRun <= RUN_PROBABILITY;
     }
 
 }
