@@ -8,7 +8,7 @@ public class Display {
 
     // 플레이어 상태 출력
     public void printPlayerStatus(int hp) {
-        System.out.println("Player HP : "+p.getHp());
+        System.out.println("Player HP : "+hp);
     }
     // 몬스터 상태 출력
     public void printMonsterStatus(int hp) {
