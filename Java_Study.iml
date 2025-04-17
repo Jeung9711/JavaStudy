@@ -11,5 +11,6 @@
     <orderEntry type="library" name="jackson-core-2.18.3" level="project" />
     <orderEntry type="library" name="jackson-databind-2.18.3" level="project" />
     <orderEntry type="library" name="jsoup-1.19.1" level="project" />
+    <orderEntry type="library" name="mariadb-java-client-3.5.3" level="project" />
   </component>
 </module>
